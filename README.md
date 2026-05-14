@@ -13,23 +13,23 @@ MyPass is a simple, desktop-based **Password Manager & Generator** built with Py
 
 ### Main Window
 
-![Main Window](assets/screenshots/main-window.png)
+<img src="assets/screenshots/main-window.png" alt="Main Window" width="420">
 
 ### Generated Password
 
-![Generated Password](assets/screenshots/generated-password.png)
+<img src="assets/screenshots/generated-password.png" alt="Generated Password" width="420">
 
 ### Empty Fields Validation
 
-![Empty Fields Validation](assets/screenshots/empty-fields-validation.png)
+<img src="assets/screenshots/empty-fields-validation.png" alt="Empty Fields Validation" width="420">
 
 ### Save Confirmation
 
-![Save Confirmation](assets/screenshots/save-confirmation.png)
+<img src="assets/screenshots/save-confirmation.png" alt="Save Confirmation" width="420">
 
 ### Saved Credentials File
 
-![Saved Credentials File](assets/screenshots/saved-credentials-file.png)
+<img src="assets/screenshots/saved-credentials-file.png" alt="Saved Credentials File" width="420">
 
 ## ✨ Features
 
