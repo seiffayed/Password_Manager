@@ -59,6 +59,14 @@ def save():
         messagebox.showinfo(title="Oops", message="Please make sure you haven't "
                                                     "left any fields empty.")
     else:
+        is_ok = messagebox.askokcancel(
+            title=website,
+            message=f"These are the details entered:\nUsername: {username}\nPassword: {password}\nIs it ok to save?"
+        )
+
+        if not is_ok:
+            return
+
         try:
             with open("Test_passwords.json", "r") as file:
                 #Read old data

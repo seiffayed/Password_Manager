@@ -1,13 +1,13 @@
-# MyPass - Secure Password Manager
+# MyPass - Password Manager
 
 ![Python](https://img.shields.io/badge/Python-3.x-blue?style=for-the-badge&logo=python)
 ![Tkinter](https://img.shields.io/badge/GUI-Tkinter-green?style=for-the-badge)
 ![Pyperclip](https://img.shields.io/badge/Clipboard-Pyperclip-orange?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-MIT-lightgrey?style=for-the-badge)
 
-MyPass is a simple, desktop-based **Password Manager & Generator** built with Python and Tkinter. It helps users create strong randomized passwords, copy them automatically to the clipboard, and store saved login details locally in a text file.
+MyPass is a beginner-friendly desktop password manager built with Python and Tkinter. It can generate strong random passwords, copy generated passwords to the clipboard, save login details locally in a JSON file, and search saved credentials by website name.
 
-> ⚠️ This project stores passwords in a local `.txt` file for learning/demo purposes. For production use, password data should be encrypted before storage.
+> ⚠️  Security Note: This project stores passwords in a local `.json` file for learning/demo purposes. For production use, password data should be encrypted before storage.
 
 ## 📸 Screenshots
 
@@ -19,53 +19,63 @@ MyPass is a simple, desktop-based **Password Manager & Generator** built with Py
 | --- | --- |
 | <img src="assets/screenshots/empty-fields-validation.png" alt="Empty Fields Validation" width="360"> | <img src="assets/screenshots/save-confirmation.png" alt="Save Confirmation" width="360"> |
 
-### Saved Credentials File
+| Search Result | Missing Data File |
+| --- | --- |
+| <img src="assets/screenshots/search-result.png" alt="Search Result" width="360"> | <img src="assets/screenshots/no-data-file.png" alt="Missing Data File" width="360"> |
 
-![Saved Credentials File](assets/screenshots/saved-credentials-file.png)
+| Website Not Found | Saved Credentials JSON |
+| --- | --- |
+| <img src="assets/screenshots/website-not-found.png" alt="Website Not Found" width="360"> | <img src="assets/screenshots/saved-credentials-json.png" alt="Saved Credentials JSON" width="360"> |
 
 ## ✨ Features
 
-- 🔐 **Strong password generation** using random letters, numbers, and symbols
-- 📋 **Automatic clipboard copying** with `pyperclip`
-- 💾 **Local data storage** in a text file
-- 🖥️ **User-friendly Tkinter GUI** with clear input fields and buttons
-- ✅ **Input validation** to prevent saving empty website, username, or password fields
-- 🧾 **Confirmation pop-up** before saving entered credentials
-- 🎯 **Default username/email field** for faster data entry
+- Generate strong randomized passwords using letters, numbers, and symbols.
+- Automatically copy generated passwords to the clipboard with `pyperclip`.
+- Save credentials locally in `Test_passwords.json`.
+- Store data in structured JSON grouped by website name.
+- Search for saved credentials by website.
+- Show a clear message when a website is not found.
+- Show a clear error when the data file does not exist yet.
+- Validate empty website, username, and password fields before saving.
+- Show a confirmation popup before writing credentials to the JSON file.
+- Use a default email/username value to speed up repeated entries.
+- Clear the website and password fields after saving, then return focus to the website field.
 
 ## 🛠️ Tech Stack
 
-- **Python** - Core programming language
-- **Tkinter** - Built-in Python GUI library
-- **Pyperclip** - Clipboard management for generated passwords
+- **Python** - core programming language
+- **Tkinter** - built-in GUI library
+- **Pyperclip** - clipboard support for generated passwords
+- **JSON** - local structured credential storage
 
-## ⚙️ How it Works
+## ⚙️ How It Works
 
 1. Enter the website name and email/username.
-2. Click **Generate Password** to create a strong randomized password.
-3. The generated password is inserted into the password field and copied to your clipboard automatically.
-4. Click **Add** to save the credentials.
-5. MyPass checks that no fields are empty.
-6. A confirmation pop-up displays the entered details before saving.
-7. If confirmed, the credentials are appended to `Test_passwords.txt`.
+2. Click **Generate Password** to create a random password.
+3. The password is inserted into the password field and copied to the clipboard.
+4. Click **Add** to review the entered details in a confirmation popup.
+5. If you confirm, the credentials are saved in `Test_passwords.json`.
+6. If `Test_passwords.json` already exists, the app loads the existing data and updates it.
+7. If the same website name already exists, the saved username and password for that website are replaced with the newest values.
+8. Click **Search** after entering a website name to view saved credentials for that website.
 
 Generated passwords include:
 
 - Uppercase and lowercase letters
 - Numbers
 - Symbols
-- Shuffled character order for better randomness
+- Shuffled character order
 
 ## 📦 Installation
 
-### 1. Clone the repository
+### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/seiffayed/Password_Manager.git
 cd Password_Manager
 ```
 
-### 2. Install the required package
+### 2. Install Requirements
 
 Tkinter is included with most Python installations, but `pyperclip` must be installed manually:
 
@@ -73,7 +83,7 @@ Tkinter is included with most Python installations, but `pyperclip` must be inst
 pip install pyperclip
 ```
 
-### 3. Run the application
+### 3. Run the App
 
 ```bash
 python main.py
@@ -83,36 +93,55 @@ python main.py
 
 ```text
 Password_Manager/
-├── assets/
-│   └── screenshots/
-│       ├── main-window.png
-│       ├── generated-password.png
-│       ├── empty-fields-validation.png
-│       ├── save-confirmation.png
-│       └── saved-credentials-file.png
-├── main.py
-├── logo.png
-├── Test_passwords.txt
-├── README.md
-├── LICENSE
-└── .gitignore
+|-- assets/
+|   `-- screenshots/
+|       |-- main-window.png
+|       |-- generated-password.png
+|       |-- empty-fields-validation.png
+|       |-- save-confirmation.png
+|       |-- search-result.png
+|       |-- no-data-file.png
+|       |-- website-not-found.png
+|       `-- saved-credentials-json.png
+|-- main.py
+|-- logo.png
+|-- Test_passwords.json
+|-- README.md
+|-- LICENSE
+`-- .gitignore
 ```
 
-## 🧪 Validation & Error Handling
+## 🧪 Validation and Error Handling
 
-MyPass includes basic validation to improve reliability:
+MyPass includes simple validation and error handling:
 
 - If the website, username, or password field is empty, the app displays an error message.
 - Before saving, the app shows a confirmation dialog so users can review the entered credentials.
-- After a successful save, the input fields are cleared and the default username placeholder is restored.
+- If the user searches without entering a website, the app asks for a website name.
+- If the user searches before any JSON data file exists, the app shows a missing data file error.
+- If the searched website does not exist in the JSON data, the app shows a not-found message.
+- After a successful save, the website and password fields are cleared.
 
-## 🔒 Security Note
+## Data Format
 
-This project is intended as a beginner-friendly Python GUI project. Since credentials are stored in plain text, avoid using it for real accounts unless encryption or a secure database is added.
+Saved credentials are stored in `Test_passwords.json` using this structure:
+
+```json
+{
+  "Amazon": {
+    "username": "your_email@gmail.com",
+    "password": "(&e9rDJKR3xac*(75"
+  },
+  "Gmail": {
+    "username": "your_email@gmail.com",
+    "password": "JL*7bnA!w21BJK"
+  }
+}
+```
 
 ## 🎓 Credits
 
-This project is a part of the **"100 Days of Code: The Complete Python Pro Bootcamp"**.
+This project is part of the **100 Days of Code: The Complete Python Pro Bootcamp** learning path.
 
 ## 📄 License
 
@@ -120,4 +149,4 @@ This project is licensed under the MIT License. See the `LICENSE` file for detai
 
 ## 🙌 Author
 
-Built by **SeiF Fayed** as a Python Tkinter project for managing and generating passwords locally.
+Built by **SeiF Fayed** as a Python Tkinter project for managing, generating, saving, and searching passwords locally.
